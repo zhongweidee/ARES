@@ -10,3 +10,17 @@
 *.lai
 *.la
 *.a
+*.swap
+*.o
+*.tar.gz
+.*
+*.bk
+*.bak
+lab/
+.cdl
+.gds
+.strm
+.v
+.out
+.tar.gz
+.tar
