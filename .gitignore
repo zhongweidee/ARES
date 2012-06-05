@@ -12,6 +12,7 @@
 *.a
 *.swap
 *.o
+# Custom file
 *.tar.gz
 .*
 *.bk
@@ -24,3 +25,4 @@ lab/
 .out
 .tar.gz
 .tar
+old

@@ -14,6 +14,10 @@
 #define SPICENETLISTBUILDER_
 #include "../include_SP/SpiceNetlistBuilder.h"
 #endif
+#ifndef HASH_H_
+#define HASH_H_
+#include "../include_SP/Hash.h"
+#endif
 
 int main(int argc, char** argv)
 {
@@ -43,7 +47,13 @@ int main(int argc, char** argv)
         //delete node;
         netDataBase=builder.netDataBase;
 	cout<<(builder.netDataBase)->elems<<endl;
-        free(netDataBase);
-        delete node;
-        free(deviceList);
+       /* start to use hash to build net database */ 
+       Hash *netHash = malloc(sizeof(Hash *));
+       GF::splitDataBaseToHash(netDataBase,"{","}","@",netHash);
+       char *value =(char *)HashValueAtKey("VDD"); 
+       printf("LOG:value is %s",value);
+       
+       free(netDataBase);
+       delete node;
+       free(deviceList);
 }
