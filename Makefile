@@ -5,7 +5,7 @@ CFLAGS= -I include_SP
 CPPFLAGS= -I include_SP
 mainLib =SpiceNetlistNode.o SpiceNetlistBuilder.o Cstring.o \
          main.o Global_function.o SubcktNode.o functionObject.o \
-         arrayOfCstring.o ExtractDeviceList.o GF.o
+         arrayOfCstring.o ExtractDeviceList.o GF.o Hash.o
 SpicePaser: $(mainLib)
 	$(CC) $^  $(CPPFLAGS) -o ./lab/$@
 main.o: main.cc
@@ -22,11 +22,13 @@ ExtractDeviceList.o:ExtractDeviceList.c
 	$(CC)   -c  $< 
 Cstring.o:Cstring.c 
 	$(CC)   -c  $< 	
+Hash.o:Hash.c 
+	$(CC)   -c  $< 	
 functionObject.o:functionObject.cc
 	$(CC)   -c  $< 
 Global_function.o:Global_function.cc
 	$(CC)   -c  $< 
-GF.o:GF.c
+GF.o:GF.c Hash.o
 	$(CC)   -c $<
 .PHONY:clean
 clean:

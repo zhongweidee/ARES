@@ -1,11 +1,19 @@
+#ifndef HEADFILE_
+#define HEADFILE_
 #include "../include_SP/HeadFile.h"
-typedef struct {
+#endif
+#ifndef ARRAYOFCSTRING_H
+#define ARRAYOFCSTRING_H
+#include "../include_SP/arrayOfCstring.h"
+#endif
+
+/*typedef struct {
    int numOfElems;
    int size;
    int allocSize;
    char** elems;
 } ArrayCstring;
-
+*/
 void ArrayCstringNew(ArrayCstring *s,int allocS)
 {
    s->allocSize=allocS;

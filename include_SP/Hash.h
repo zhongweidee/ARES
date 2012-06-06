@@ -1,3 +1,15 @@
+#ifndef _GNU_SOURCE 
+#define _GNU_SOURCE // must for GNU hsearch
+#endif
+#ifndef SEARCH_H_
+#define SEARCH_H_
+#include <search.h>
+#endif
+#ifndef ARRAYOFCSTRING_H
+#define ARRAYOFCSTRING_H
+#include "../include_SP/arrayOfCstring.h"
+#endif
+
 typedef struct {
     ENTRY elem;
     ENTRY *retElem; 

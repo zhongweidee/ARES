@@ -48,9 +48,9 @@ int main(int argc, char** argv)
         netDataBase=builder.netDataBase;
 	cout<<(builder.netDataBase)->elems<<endl;
        /* start to use hash to build net database */ 
-       Hash *netHash = malloc(sizeof(Hash *));
+       Hash *netHash = (Hash *)malloc(sizeof(Hash *));
        GF::splitDataBaseToHash(netDataBase,"{","}","@",netHash);
-       char *value =(char *)HashValueAtKey("VDD"); 
+       char *value =(char *)HashValueAtKey(netHash,"VDD"); 
        printf("LOG:value is %s",value);
        
        free(netDataBase);
