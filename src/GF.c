@@ -19,13 +19,13 @@ void joinStr(char* arr,int numOfStr...)
      memcpy(pos,"\0",1);
      va_end(vl);
 }
-void splitDataBaseToHash(Cstring *s,const char *sep1,const char *sep2,const char flag,Hash *h){
+void splitDataBaseToHash(Cstring *s,char sep1,char sep2,char flag,Hash *h){
     size_t hashSize;
     hashSize=0;
     while(memchr(s->elems,flag,s->total_element)!=0){
          hashSize++;
                                                      } 
-    HashNew(h,hashSzie);
+    HashNew(h,hashSize);
     void *posA=memchr(s->elems,sep1,s->total_element);
     void *posB,*posC,*posD;
     while(posA!=0){

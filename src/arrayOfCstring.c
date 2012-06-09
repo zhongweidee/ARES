@@ -2,8 +2,8 @@
 #define HEADFILE_
 #include "../include_SP/HeadFile.h"
 #endif
-#ifndef ARRAYOFCSTRING_H
-#define ARRAYOFCSTRING_H
+#ifndef ARRAYOFCSTRING_H_
+#define ARRAYOFCSTRING_H_
 #include "../include_SP/arrayOfCstring.h"
 #endif
 

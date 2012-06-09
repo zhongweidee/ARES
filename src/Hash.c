@@ -13,8 +13,8 @@
 #define HASH_H_
 #include "../include_SP/Hash.h"
 #endif
-#ifndef ARRAYOFCSTRING_H
-#define ARRAYOFCSTRING_H
+#ifndef ARRAYOFCSTRING_H_
+#define ARRAYOFCSTRING_H_
 #include "../include_SP/arrayOfCstring.h"
 #endif
 
@@ -68,9 +68,11 @@ void *HashValueAtKey(Hash *h,const char *key)
 
 void HashFree(Hash *h)
 {
- need to free CstringArray  
- for(int a=0;a<
- 
+ //need to free CstringArray  
+ for(int a=0;a<((h->keys)->numOfElems);++a){
+    free(ArrayCstringIndex(h->keys,a)); 
+                                            }
+ ArrayCstringDelete(h->keys);  
  hdestroy_r(h->htab);
 } 
 
