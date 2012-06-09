@@ -13,10 +13,10 @@
 #define HASH_H_
 #include "../include_SP/Hash.h"
 #endif
-#ifndef ARRAYOFCSTRING_H
-#define ARRAYOFCSTRING_H
-#include "../include_SP/arrayOfCstring.h"
-#endif
+//#ifndef ARRAYOFCSTRING_H
+//#define ARRAYOFCSTRING_H
+//#include "../include_SP/arrayOfCstring.h"
+//#endif
 
 
 

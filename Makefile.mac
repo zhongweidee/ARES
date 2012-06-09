@@ -1,6 +1,6 @@
 VPATH=src:include:include_SP
 #CC=c++
-CC=g++ -I /opt/local/var/macports/software/boost/opt/local/include
+CC=c++ -I /opt/local/var/macports/software/boost/opt/local/include
 CXXFLAGS= -I include_SP
 CFLAGS= -I include_SP
 CPPFLAGS= -I include_SP

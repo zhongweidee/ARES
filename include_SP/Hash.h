@@ -5,9 +5,9 @@
 #define SEARCH_H_
 #include <search.h>
 #endif
-#ifndef ARRAYOFCSTRING_H
-#define ARRAYOFCSTRING_H
-#include "../include_SP/arrayOfCstring.h"
+#ifndef ARRAYOFCSTRING_H_
+#define ARRAYOFCSTRING_H_
+#include "arrayOfCstring.h"
 #endif
 
 typedef struct {

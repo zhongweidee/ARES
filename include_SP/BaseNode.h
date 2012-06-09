@@ -10,8 +10,8 @@
 #define CSTRING_
 #include "Cstring.h"
 #endif
-#ifndef ARRAYOFCSTRING_
-#define ARRAYOFCSTRING_
+#ifndef ARRAYOFCSTRING_H_
+#define ARRAYOFCSTRING_H_
 #include "arrayOfCstring.h"
 #endif
 class child
