@@ -46,11 +46,12 @@ int main(int argc, char** argv)
 	cout<<"LOG:start to netDataBase"<<endl;
         //delete node;
         netDataBase=builder.netDataBase;
-	cout<<(builder.netDataBase)->elems<<endl;
+	//cout<<(builder.netDataBase)->elems<<endl;
        /* start to use hash to build net database */ 
        Hash *netHash = (Hash *)malloc(sizeof(Hash *));
        GF::splitDataBaseToHash(netDataBase,'{','}','@',netHash);
-       char *value =(char *)HashValueAtKey(netHash,"VDD"); 
+       HashPrintKeys(netHash);
+       char *value =(char *)HashValueAtKey(netHash,"vdd_ao"); 
        printf("LOG:value is %s",value);
        
        free(netDataBase);

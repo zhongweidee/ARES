@@ -5,9 +5,9 @@
 #define SEARCH_H_
 #include <search.h>
 #endif
-#ifndef ARRAYOFCSTRING_H
-#define ARRAYOFCSTRING_H
-#include "../include_SP/arrayOfCstring.h"
+#ifndef ARRAYOFCSTRING_H_
+#define ARRAYOFCSTRING_H_
+#include "arrayOfCstring.h"
 #endif
 
 typedef struct {
@@ -23,3 +23,5 @@ void HashInsertString(Hash *h,char *key,char *value);
 void HashInsertPoint(Hash *h,char *key,void *value);
 void *HashValueAtKey(Hash *h,const char *key);
 void HashFree(Hash *h);
+ArrayCstring *HashKeys(Hash *h);
+void HashPrintKeys(Hash *h);

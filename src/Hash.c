@@ -13,10 +13,17 @@
 #define HASH_H_
 #include "../include_SP/Hash.h"
 #endif
-#ifndef ARRAYOFCSTRING_H_
-#define ARRAYOFCSTRING_H_
-#include "../include_SP/arrayOfCstring.h"
-#endif
+//<<<<<<< HEAD
+//#ifndef ARRAYOFCSTRING_H_
+//#define ARRAYOFCSTRING_H_
+//#include "../include_SP/arrayOfCstring.h"
+//#endif
+//=======
+//#ifndef ARRAYOFCSTRING_H
+//#define ARRAYOFCSTRING_H
+//#include "../include_SP/arrayOfCstring.h"
+//#endif
+//>>>>>>> d618633e40c8afd306db1d72121bbb38edcef2cc
 
 
 
@@ -35,6 +42,15 @@ void HashNew(Hash *h ,size_t size)
    assert(status!=0);
    h->keys =(ArrayCstring*)malloc(sizeof(ArrayCstring *));
    ArrayCstringNew(h->keys,20*size);
+}
+ArrayCstring *HashKeys(Hash *h){
+    return h->keys; 
+}
+void HashPrintKeys(Hash *h){
+ printf("LOG: key num is %d\n",((h->keys)->numOfElems));
+ for(int a=0;a<((h->keys)->numOfElems);++a){
+    printf("LOG:key is %s\n",(ArrayCstringIndex(h->keys,a))); 
+        }
 }
 
 void HashInsertString(Hash *h,char *key,char *value)

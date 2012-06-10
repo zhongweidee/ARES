@@ -1,4 +1,7 @@
+#ifndef SPICENETLISTbUILDER_H_
+#define SPICENETLISTbUILDER_H_
 #include "../include_SP/SpiceNetlistBuilder.h"
+#endif
 //SpiceNetlistBuilder::SpiceNetlistBuilder(string &netlistPath)
 SpiceNetlistBuilder::SpiceNetlistBuilder(SpiceNetlistNode *s_node,Cstring *dList)
 {
@@ -9,7 +12,7 @@ SpiceNetlistBuilder::SpiceNetlistBuilder(SpiceNetlistNode *s_node,Cstring *dList
         subcktNodeTag=0;
         //node =new SpiceNetlistNode; 
         //(*node).init(netlistPath);
-        node=s_node;
+        node=s_node; 
         //relationshipAndIndex="@I0+0";
 }
 SpiceNetlistBuilder::~SpiceNetlistBuilder()
