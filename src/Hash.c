@@ -78,8 +78,14 @@ void *HashValueAtKey(Hash *h,const char *key)
 {
    int status;
    status = hsearch_r(h->elem,FIND,&(h->retElem),(h->htab));
-   assert(status!=0);
+   if(status==0){
+    return 0;
+                }
+   else{
+   //assert(status!=0);
    return (h->retElem)->data;
+   //return h->retElem;
+       }
 }
 
 void HashFree(Hash *h)

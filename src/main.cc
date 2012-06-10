@@ -54,6 +54,7 @@ int main(int argc, char** argv)
        char *value =(char *)HashValueAtKey(netHash,"vdd_ao"); 
        printf("LOG:value is %s",value);
        
+       HashFree(netHash);
        free(netDataBase);
        delete node;
        free(deviceList);

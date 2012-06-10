@@ -35,23 +35,27 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
       posB=memchr(posA,flag,(s->total_element)-((char *)posA-(s->elems))); 
       posC=(char *)posB+1; 
       posD=memchr(posC,sep2,(s->total_element)-((char *)posC-(s->elems)));
-      char valueForHash[(char *)posB-(char *)posA+1];
-      memcpy(valueForHash,posA,((char *)posB-(char *)posA));
+      char valueForHash[(char *)posB-(char *)posA];
+      valueForHash[(char *)posB-(char *)posA-1]='\0';
+      memcpy(valueForHash,(char*)posA+1,((char *)posB-(char *)posA)-1);
+      printf("LOG: valueForHash is %s\n",valueForHash);
       char keyForHash[(char *)posD-(char *)posC+1];
-      memcpy(keyForHash,posC,(char *)posD-(char *)posC);
+      keyForHash[(char *)posD-(char *)posC]='\0';
+      memcpy(keyForHash,(char *)posC,(char *)posD-(char *)posC);
+      printf("LOG: keyForHash is %s\n",keyForHash);
       void *result = HashValueAtKey(h,keyForHash);
       if(result==0){
       //memcpy(instancePin,posC,((char *)posD-(char *)posC));
       ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring *)); 
       ArrayCstringNew(value,10);
-      ArrayCstringPush(value,valueForHash,(char *)posD-(char *)posC+1);
+      ArrayCstringPush(value,valueForHash,strlen(valueForHash));
       HashInsertPoint(h,keyForHash,valueForHash); 
                                          }
       else{
-      ArrayCstring *value =(ArrayCstring*)result; 
-      ArrayCstringPush(value,valueForHash,(char *)posD-(char *)posC+1);
+      //ArrayCstring *value =(ArrayCstring*)result; 
+      ArrayCstringPush((ArrayCstring*)result,valueForHash,strlen(valueForHash));
            }
-      posA=memchr((char *)posD+1,sep1,s->total_element-((char *)posD+1-(s->elems)));
+      posA=memchr((char *)posD+1,sep1,s->total_element-((char *)posD-(s->elems)));
                    }
 }
 
