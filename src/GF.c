@@ -46,13 +46,15 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
       void *result = HashValueAtKey(h,keyForHash);
       if(result==0){
       //memcpy(instancePin,posC,((char *)posD-(char *)posC));
+      printf("LOG: not find hash key\n");
       ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring *)); 
-      ArrayCstringNew(value,10);
+      ArrayCstringNew(value,2);
       ArrayCstringPush(value,valueForHash,strlen(valueForHash));
       HashInsertPoint(h,keyForHash,valueForHash); 
                                          }
       else{
       //ArrayCstring *value =(ArrayCstring*)result; 
+      printf("LOG: find hash key\n");
       ArrayCstringPush((ArrayCstring*)result,valueForHash,strlen(valueForHash));
            }
       posA=memchr((char *)posD+1,sep1,s->total_element-((char *)posD-(s->elems)));

@@ -24,7 +24,10 @@ void ArrayCstringNew(ArrayCstring *s,int allocS)
 }
 
 void ArrayCstringGrow(ArrayCstring *s){
+     printf("LOG1: arrayCstringGrow s->numOfElems is %d s->allocSize is %d\n",s->numOfElems,s->allocSize);
      if(((s->numOfElems)+1)>(s->allocSize)){
+     //printf("LOG: s->numOfElems is %d",s->numOfElems);
+     //printf("LOG: s->allocSize is %d",s->allocSize);
          s->allocSize=(s->allocSize)*2;
          s->elems=(char**)realloc(s->elems,(s->allocSize)*sizeof(char**));
           }
