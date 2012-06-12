@@ -1,0 +1,11 @@
+where : find the current line of source file
+break : set break point
+delete break: delete all break point
+run : run program again
+n: next line
+s: enter any subroutine
+bt: display the stack
+p: print , also can be use for set variable value 
+l: display ten line of currentline
+c: continue
+
