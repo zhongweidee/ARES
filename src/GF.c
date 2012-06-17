@@ -28,7 +28,8 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
          hashSize++;
          flagPos=memchr((char*)flagPos +1,flag,(s->total_element-((char*)flagPos-(s->elems))));
                                                      } 
-    HashNew(h,hashSize);
+    //HashNew(h,hashSize);
+    HashNew(h,20);
     void *posA=memchr(s->elems,sep1,s->total_element);
     void *posB,*posC,*posD;
     while(posA!=0){
@@ -43,10 +44,11 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
       keyForHash[(char *)posD-(char *)posC]='\0';
       memcpy(keyForHash,(char *)posC,(char *)posD-(char *)posC);
       printf("LOG: keyForHash is %s\n",keyForHash);
-      void *result = HashValueAtKey(h,keyForHash);
+      ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY*));
+      int result = HashValueAtKey(h,keyForHash,entry);
       if(result==0){
       //memcpy(instancePin,posC,((char *)posD-(char *)posC));
-      printf("LOG: not find hash key\n");
+      printf("LOG: result is %d not find hash key: %s\n",result,keyForHash);
       ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring *)); 
       ArrayCstringNew(value,2);
       ArrayCstringPush(value,valueForHash,strlen(valueForHash));
@@ -54,8 +56,9 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
                                          }
       else{
       //ArrayCstring *value =(ArrayCstring*)result; 
-      printf("LOG: find hash key\n");
-      ArrayCstringPush((ArrayCstring*)result,valueForHash,strlen(valueForHash));
+      printf("LOG: result is %d find hash key: %s\n",result,keyForHash);
+      //printf("LOG: result is %s not find hash key: %s\n",result,keyForHash);
+      ArrayCstringPush((ArrayCstring*)((*entry)->data),valueForHash,strlen(valueForHash));
            }
       posA=memchr((char *)posD+1,sep1,s->total_element-((char *)posD-(s->elems)));
                    }

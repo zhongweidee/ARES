@@ -65,6 +65,10 @@ void ArrayCstringPrintAllElems(ArrayCstring *s){
     printf("Debug:s->elems, %s\n",(s->elems)[a]);
                             }
 }
+void ArrayCstringPop(ArrayCstring *s,char *dest)
+{
+   dest =ArrayCstringIndex(s->numOfElems); 
+}
 
 void ArrayCstringDelete(ArrayCstring *s)
 {

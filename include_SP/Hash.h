@@ -12,16 +12,26 @@
 
 typedef struct {
     ENTRY elem;
-    ENTRY *retElem; 
-    struct hsearch_data *htab; 
     size_t initialNumOfElem; 
     size_t existNumOfElem; 
+    //ENTRY *entryArray[];
+    ENTRY *retElem; 
+    struct hsearch_data *htab; 
     ArrayCstring *keys; 
 } Hash;
+typedef struct _ENTRY
+{
+  unsigned int used;
+  ENTRY entry;
+}
+_ENTRY;
+
+
 void HashNew(Hash *h,size_t size);
-void HashInsertString(Hash *h,char *key,char *value);
-void HashInsertPoint(Hash *h,char *key,void *value);
-void *HashValueAtKey(Hash *h,const char *key);
+void HashInsertEntry(Hash *h,ENTRY *entry);
+//void HashInsertString(Hash *h,const char *key,char *value);
+//void HashInsertPoint(Hash *h,const char *key,void *value);
+int HashValueAtKey(Hash *h,const char *key,ENTRY **findE);
 void HashFree(Hash *h);
 ArrayCstring *HashKeys(Hash *h);
 void HashPrintKeys(Hash *h);

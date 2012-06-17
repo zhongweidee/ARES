@@ -80,5 +80,12 @@ typedef std::map<std::string,SubcktNode> mHashSSubcktNode;
 
 #define callByName  0
 #define callByOrder 1
+#ifndef DEBUG
+#define putsLogS(a) printf("Debug:  %s\n",a)
+#define putsLogD(a) printf("Debug:  %d\n",a)
+#else
+#define putsLogS(a)
+#define putsLogD(a) 
+#endif
 
 #endif

@@ -51,10 +51,18 @@ int main(int argc, char** argv)
        Hash *netHash = (Hash *)malloc(sizeof(Hash *));
        GF::splitDataBaseToHash(netDataBase,'{','}','@',netHash);
        HashPrintKeys(netHash);
-       char *value =(char *)HashValueAtKey(netHash,"vdd_ao"); 
-       printf("LOG:value is %s",value);
-       
+       ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY*));
+       int result =HashValueAtKey(netHash,"vdd_ao",entry); 
+       if(result !=0){
+       printf(" k2's value is %s\n",(*entry)->data);
+                  }
+       else{
+       printf(" can't find value in  vdd_ao\n");
+         }
+ 
+       //printf("LOG:value is %s",value);
        HashFree(netHash);
+       free(entry); 
        free(netDataBase);
        delete node;
        free(deviceList);

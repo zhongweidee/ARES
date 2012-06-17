@@ -18,17 +18,14 @@
 void HashNew(Hash *h ,size_t size)
 {
    int status;
-   //h->htab ={0};
-   //h->htab =calloc(30,sizeof(struct hsearch_data));
-   h->htab=(hsearch_data *)calloc(30,sizeof(struct hsearch_data));
-   memset(h->htab,0,sizeof(h->htab));
-   h->initialNumOfElem=size;
-   h->retElem =(ENTRY*)malloc(sizeof(ENTRY *));
-   assert(h->retElem !=0);
-   ENTRY e;
-   status=hcreate_r(h->initialNumOfElem,h->htab);
+   h->existNumOfElem=0;
+   h->htab=(struct hsearch_data *)calloc(30,sizeof(struct hsearch_data));
+   assert(h->htab!=0);
+   status=hcreate_r(size,h->htab);
+   putsLogD(status); 
    assert(status!=0);
-   h->keys =(ArrayCstring*)malloc(sizeof(ArrayCstring *));
+   h->initialNumOfElem=size;
+   h->keys =(ArrayCstring*)malloc(sizeof(ArrayCstring ));
    ArrayCstringNew(h->keys,size);
 }
 ArrayCstring *HashKeys(Hash *h){
@@ -41,54 +38,65 @@ void HashPrintKeys(Hash *h){
         }
 }
 
-void HashInsertString(Hash *h,char *key,char *value)
+//void HashInsertString(Hash *h,const char *key,char *value)
+void HashInsertEntry(Hash *h,ENTRY *entry)
 {
+   (h->existNumOfElem)++;
+   ArrayCstringPush(h->keys,entry.key,strlen(entry.key));
    int status;
-   (h->elem).key=key;
-   (h->elem).data=value;
-   status = hsearch_r(h->elem,ENTER,&(h->retElem),(h->htab));
+   ENTRY *retElem;
+   status = hsearch_r(entry,ENTER,&retElem,(h->htab));
    assert(status!=0);
-   ArrayCstringPush(h->keys,key,strlen(key));
+}
+void CopyEntry(ENTRY *src, ENTRY *des)
+{
+     des.key = strdump(src.key); 
+     des.data=src.value;
 }
 
-
-void HashInsertPoint(Hash *h,char *key,void *value)
+/*void HashInsertPoint(Hash *h,ENTRY *entry)
 {
    int status;
-   (h->elem).key=key;
+   (h->elem).key=(char *)key;
    (h->elem).data=value;
-   status = hsearch_r(h->elem,ENTER,&(h->retElem),(h->htab));
+   ENTRY *retElem;
+   status = hsearch_r(h->elem,ENTER,&retElem,(h->htab));
    assert(status!=0);
-   ArrayCstringPush(h->keys,key,strlen(key));
-}
+   ArrayCstringPush(h->keys,(char*)key,strlen(key));
+}*/
 
-void *HashValueAtKey(Hash *h,const char *key)
+int HashValueAtKey(Hash *h,const char *key,ENTRY **findE)
 {
    int status;
    ENTRY wishFind;
    wishFind.key=(char *)key;
    //status = hsearch_r(h->elem,FIND,&(h->retElem),(h->htab));
-   status = hsearch_r(wishFind,FIND,&(h->retElem),(h->htab));
-   printf("Debug: status is %d\n",status);
+   //status = hsearch_r(wishFind,FIND,&(h->retElem),(h->htab));
+   status = hsearch_r(wishFind,FIND,findE,(h->htab));
    if(status==0){
-    return 0;
+     return 0;
                 }
    else{
-   //assert(status!=0);
-   printf("Debug: find the hash key is %s\n",(h->retElem)->key);
    HashPrintKeys(h);
-   return (h->retElem)->data;
+   return 1;
+        }
+   //assert(status!=0);
+   //assert(status!=0);
+   //printf("Debug: find the hash key is %s\n",(h->retElem)->key);
+   //return (h->retElem)->data;
    //return h->retElem;
-       }
 }
 
 void HashFree(Hash *h)
 {
  //need to free CstringArray  
- for(int a=0;a<((h->keys)->numOfElems);++a){
-    free(ArrayCstringIndex(h->keys,a)); 
-                                            }
+// for(int a=0;a<((h->keys)->numOfElems);++a){
+ //   free(ArrayCstringIndex(h->keys,a)); 
+  //                                          }
+ //free(h->retElem);
  ArrayCstringDelete(h->keys);  
+ free(h->keys); 
  hdestroy_r(h->htab);
+ free(h->htab);  
 } 
 
