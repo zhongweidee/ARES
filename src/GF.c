@@ -44,19 +44,25 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
       keyForHash[(char *)posD-(char *)posC]='\0';
       memcpy(keyForHash,(char *)posC,(char *)posD-(char *)posC);
       printf("LOG: keyForHash is %s\n",keyForHash);
-      ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY*));
+      ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY));
       int result = HashValueAtKey(h,keyForHash,entry);
       if(result==0){
       //memcpy(instancePin,posC,((char *)posD-(char *)posC));
       printf("LOG: result is %d not find hash key: %s\n",result,keyForHash);
-      ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring *)); 
+      ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring )); 
       ArrayCstringNew(value,2);
       ArrayCstringPush(value,valueForHash,strlen(valueForHash));
-      HashInsertPoint(h,keyForHash,valueForHash); 
+      if(strcmp(keyForHash,"gnd")==0){
+         printf("LOG: before gnd array address is %p\n",value);
+                                     }
+      HashInsertPtr(h,keyForHash,value); 
                                          }
       else{
       //ArrayCstring *value =(ArrayCstring*)result; 
-      printf("LOG: result is %d find hash key: %s\n",result,keyForHash);
+      printf("LOG: result is %d find hash key: %s, and the array address is %p \n",result,keyForHash,((*entry)->data));
+      //if(strcmp(keyForHash,"gnd")==0){
+         //printf("LOG: after gnd array address is %p\n",((*entry)->data));
+       //                              }
       //printf("LOG: result is %s not find hash key: %s\n",result,keyForHash);
       ArrayCstringPush((ArrayCstring*)((*entry)->data),valueForHash,strlen(valueForHash));
            }

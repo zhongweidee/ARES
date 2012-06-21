@@ -48,13 +48,14 @@ int main(int argc, char** argv)
         netDataBase=builder.netDataBase;
 	//cout<<(builder.netDataBase)->elems<<endl;
        /* start to use hash to build net database */ 
-       Hash *netHash = (Hash *)malloc(sizeof(Hash *));
+       Hash *netHash = (Hash *)malloc(sizeof(Hash ));
        GF::splitDataBaseToHash(netDataBase,'{','}','@',netHash);
-       HashPrintKeys(netHash);
-       ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY*));
+       //HashPrintKeys(netHash);
+       ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY));
        int result =HashValueAtKey(netHash,"vdd_ao",entry); 
        if(result !=0){
-       printf(" k2's value is %s\n",(*entry)->data);
+       printf(" k2's value is :\n");
+       ArrayCstringPrintAllElems((ArrayCstring *)((*entry)->data));
                   }
        else{
        printf(" can't find value in  vdd_ao\n");

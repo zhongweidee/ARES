@@ -67,7 +67,7 @@ void ArrayCstringPrintAllElems(ArrayCstring *s){
 }
 void ArrayCstringPop(ArrayCstring *s,char *dest)
 {
-   dest =ArrayCstringIndex(s->numOfElems); 
+   dest =ArrayCstringIndex(s,s->numOfElems); 
 }
 
 void ArrayCstringDelete(ArrayCstring *s)
