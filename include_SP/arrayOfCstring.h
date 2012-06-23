@@ -11,5 +11,6 @@ char *ArrayCstringIndex(ArrayCstring *s,int i);
 void ArrayCstringCopy(ArrayCstring *s,ArrayCstring *c);
 void ArrayCstringPrintAllElems(ArrayCstring *s);
 void ArrayCstringDelete(ArrayCstring *s);
+void ArrayCstringDelete(void *s);
 void ArrayCstringPop(ArrayCstring *s,char *dest);
 

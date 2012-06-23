@@ -79,3 +79,11 @@ void ArrayCstringDelete(ArrayCstring *s)
    free(s->elems);
 }
 
+void ArrayCstringDelete(void *s)
+{
+   int a=0;
+   for(;a<(((ArrayCstring *)s)->numOfElems);++a){
+    free((((ArrayCstring *)s)->elems)[a]);
+                            }
+   free(((ArrayCstring *)s)->elems);
+}

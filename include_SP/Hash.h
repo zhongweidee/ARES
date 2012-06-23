@@ -9,6 +9,11 @@
 #define ARRAYOFCSTRING_H_
 #include "arrayOfCstring.h"
 #endif
+#ifndef ARRAY_PTR_H_
+#define ARRAY_PTR_H_
+#include "ArrayPtr.h"
+#endif
+
 
 typedef struct {
     ENTRY elem;
@@ -16,6 +21,7 @@ typedef struct {
     size_t existNumOfElem; 
     struct hsearch_data *htab; 
     struct obstack *garbage;
+    ArrayPtr *arrayOfPtr;
 } Hash;
 typedef struct _ENTRY
 {
@@ -27,7 +33,7 @@ _ENTRY;
 
 void HashNew(Hash *h,size_t size);
 //void HashInsertEntry(Hash *h,ENTRY *entry);
-void HashInsertPtr(Hash *h,char *key,void *data);
+void HashInsertPtr(Hash *h,char *key,void *data,size_t len);
 int HashValueAtKey(Hash *h,const char *key,ENTRY **findE);
 void HashFree(Hash *h);
 ArrayCstring *HashKeys(Hash *h);

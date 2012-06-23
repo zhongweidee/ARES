@@ -28,8 +28,8 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
          hashSize++;
          flagPos=memchr((char*)flagPos +1,flag,(s->total_element-((char*)flagPos-(s->elems))));
                                                      } 
-    //HashNew(h,hashSize);
-    HashNew(h,20);
+    HashNew(h,hashSize);
+    //HashNew(h,20);
     void *posA=memchr(s->elems,sep1,s->total_element);
     void *posB,*posC,*posD;
     while(posA!=0){
@@ -44,29 +44,10 @@ void splitDataBaseToHash(Cstring *s,const char sep1,const char sep2,const char f
       keyForHash[(char *)posD-(char *)posC]='\0';
       memcpy(keyForHash,(char *)posC,(char *)posD-(char *)posC);
       printf("LOG: keyForHash is %s\n",keyForHash);
-      ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY));
-      int result = HashValueAtKey(h,keyForHash,entry);
-      if(result==0){
-      //memcpy(instancePin,posC,((char *)posD-(char *)posC));
-      printf("LOG: result is %d not find hash key: %s\n",result,keyForHash);
-      ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring )); 
-      ArrayCstringNew(value,2);
-      ArrayCstringPush(value,valueForHash,strlen(valueForHash));
-      if(strcmp(keyForHash,"gnd")==0){
-         printf("LOG: before gnd array address is %p\n",value);
-                                     }
-      HashInsertPtr(h,keyForHash,value); 
-                                         }
-      else{
-      //ArrayCstring *value =(ArrayCstring*)result; 
-      printf("LOG: result is %d find hash key: %s, and the array address is %p \n",result,keyForHash,((*entry)->data));
-      //if(strcmp(keyForHash,"gnd")==0){
-         //printf("LOG: after gnd array address is %p\n",((*entry)->data));
-       //                              }
-      //printf("LOG: result is %s not find hash key: %s\n",result,keyForHash);
-      ArrayCstringPush((ArrayCstring*)((*entry)->data),valueForHash,strlen(valueForHash));
-           }
+
+      HashInsertPtr(h,keyForHash,valueForHash,strlen(valueForHash)+1); 
       posA=memchr((char *)posD+1,sep1,s->total_element-((char *)posD-(s->elems)));
+      //free(entry); 
                    }
 }
 

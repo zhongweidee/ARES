@@ -63,6 +63,7 @@ int main(int argc, char** argv)
  
        //printf("LOG:value is %s",value);
        HashFree(netHash);
+       free(netHash);
        free(entry); 
        free(netDataBase);
        delete node;
