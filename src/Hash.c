@@ -56,8 +56,8 @@ void HashInsertPtr(Hash *h,char *key,void *data,size_t len)
       ENTRY **entry=(ENTRY **)obstack_alloc(h->garbage,sizeof(ENTRY));
       int result = HashValueAtKey(h,key,entry);
       if(result==0){
-      printf("LOG: result is %d not find hash key: %s\n",result,key);
       ArrayCstring *value = (ArrayCstring*)malloc(sizeof(ArrayCstring )); 
+      printf("LOG: result is %d not find hash key: %s value is %p\n",result,key,value);
       ArrayCstringNew(value,2);
       ArrayCstringPush(value,(char *)data,len);
      // HashInsertPtr(h,key,value); 
