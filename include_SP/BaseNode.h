@@ -47,7 +47,7 @@ class BaseNode
        //virtual bool hasChild(){ return false;};
        bool isEmpty();
        bool hasChild();
-       void initMemberVar(char *a,char *b);
+       //void initMemberVar(char *a,char *b);
        void addCstrToParentConneciton(char *cstr);
        void readingContent(string &content);
        void PortListExist();

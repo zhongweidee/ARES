@@ -13,7 +13,7 @@ class SubcktNode
        //SubcktNode(string &content);
        SubcktNode(const SubcktNode &s);
        void CopyFromBaseNode(BaseNode &s);
-       void initMemberVar(char *a,char *b);
+       //void initMemberVar(char *a,char *b);
        Cstring *parentConnection;
        Cstring *portConnection;
        ChildrenPtr    children;

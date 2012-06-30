@@ -41,11 +41,11 @@ void *ArrayPtrPopAddr(ArrayPtr *arr){
 }
 
 void ArrayPtrFree(ArrayPtr *arr,void(*free_function)(void *)){
-    int a=0;
+    size_t a=0;
     for(;a<(arr->totalNum);a++){
-    printf("LOG: str addr is %p\n",ArrayPtrPopAddr(arr));
+//    printf("LOG: str addr is %p\n",ArrayPtrPopAddr(arr));
     void **ptr= (void **)ArrayPtrPopAddr(arr);
-    printf("LOG: str is %p\n",(*ptr));
+ //   printf("LOG: str is %p\n",(*ptr));
     (*free_function)(*ptr); 
     obstack_free(arr->obstackPtr,ptr); 
                               }

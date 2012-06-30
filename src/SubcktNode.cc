@@ -526,7 +526,7 @@ BaseNode::~BaseNode(){
    ArrayCstringDelete(connection);
    free(connection);
 }
-void BaseNode::initMemberVar(char *a,char *b){
+/*void BaseNode::initMemberVar(char *a,char *b){
     if(b==0){
     cout<<" b is NULL"<<endl;
              }
@@ -537,9 +537,9 @@ void BaseNode::initMemberVar(char *a,char *b){
     cout<<" a is "<<a<<endl;
              }
     
-}
+}*/
 
-void SubcktNode::initMemberVar(char *a,char *b){
+/*void SubcktNode::initMemberVar(char *a,char *b){
     if(b==0){
     cout<<" b is NULL"<<endl;
              }
@@ -550,25 +550,25 @@ void SubcktNode::initMemberVar(char *a,char *b){
     cout<<" a is "<<a<<endl;
              }
     
-}
+}*/
 BaseNode::BaseNode(const BaseNode &b){
-      initMemberVar(vportList,b.vportList);
-      initMemberVar(subcktName,b.subcktName);
+     vportList= strdup(b.vportList);
+     subcktName= strdup(b.subcktName);
 }
 
 
 
 SubcktNode::SubcktNode(const SubcktNode &b){
-      //initMemberVar(param,b.param);
-      //initMemberVar(connection,b.connection);
-      //initMemberVar(parentName,b.parentName);
-//      initMemberVar(instanceName,b.instanceName);
-      initMemberVar(instanceName,b.instanceName);
+      //strdup(param,b.param);
+      //strdup(connection,b.connection);
+      //strdup(parentName,b.parentName);
+//      strdup(instanceName,b.instanceName);
+    instanceName=  strdup(b.instanceName);
       CstringCopy(parentConnection,b.parentConnection);
       CstringCopy(portConnection,b.portConnection);
-      initMemberVar(relationship,b.relationship);
-      initMemberVar(vportList,b.vportList);
- //     initMemberVar(subcktName,b.subcktName);
+    relationship=  strdup(b.relationship);
+    vportList=  strdup(b.vportList);
+ //     strdup(subcktName,b.subcktName);
  //    cout<<"subcktName is "<<b.subcktName<<endl;
  //   cout<<"subcktName is "<<subcktName<<endl;
 }

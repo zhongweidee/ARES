@@ -35,18 +35,18 @@ int main(int argc, char** argv)
         Cstring *deviceList=(Cstring *)malloc(sizeof(Cstring));
         CstringNew(deviceList);  
         (*node).init(netlistPath,deviceList,calibreLvsRulePath);
-	//SpiceNetlistBuilder builder(node,deviceList);
-	//builder.setTopCellName(topCellName);
+	SpiceNetlistBuilder builder(node,deviceList);
+	builder.setTopCellName(topCellName);
 	cout<<"LOG:start SpiceNetlistBuilder "<<endl;
         size_t total_element=100;
         Cstring *netDataBase =(Cstring *)malloc(sizeof(Cstring));
         CstringNewWithNum(netDataBase,100);
-	//builder.startToBuild(total_element,netDataBase);
+	builder.startToBuild(total_element,netDataBase);
 	//cout<<"LOG:end SpiceNetlistBuilder "<<endl;
 	//cout<<"LOG:start to netDataBase"<<endl;
-        //netDataBase=builder.netDataBase;
+        netDataBase=builder.netDataBase;
        /* start to use hash to build net database */ 
-       /*Hash *netHash = (Hash *)malloc(sizeof(Hash ));
+       Hash *netHash = (Hash *)malloc(sizeof(Hash ));
        GF::splitDataBaseToHash(netDataBase,'{','}','@',netHash);
        ENTRY **entry=(ENTRY **)malloc(sizeof(ENTRY));
        int result =HashValueAtKey(netHash,"vdd_ao",entry); 
@@ -60,8 +60,9 @@ int main(int argc, char** argv)
  
        HashFree(netHash);
        free(netHash);
-       free(entry); */
+       free(entry); 
        free(netDataBase);
        delete node;
+       CstringDelete(deviceList);
        free(deviceList);
 }

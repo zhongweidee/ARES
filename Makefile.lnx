@@ -1,6 +1,7 @@
 VPATH=src:include:include_SP
 #CC=c++
-CC=c++ -g   # for gdb
+#CC=c++ -g -Wall   # for gdb
+CC=c++ -Wall   # for gdb
 #CC=g++ -I /opt/local/var/macports/software/boost/opt/local/include   for mac ,but fail for hsearch_r
 CXXFLAGS= -I include_SP
 CFLAGS= -I include_SP

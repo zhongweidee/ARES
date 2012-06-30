@@ -354,6 +354,7 @@ void split(char **arr, char *str, const char *del) {
 }  
 size_t rfind(char *str1,char sep,size_t sizeOfstr1){
       char buf[sizeOfstr1+1];
+      buf[sizeOfstr1]='\0';
       strncpy(buf,str1,sizeOfstr1);
       char *posB=strrchr(buf,sep);        
       return posB-buf;
